@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+{% block body %}
+
+
+{% for post in all_posts %}
+<h1><a href="{% url 'blog:detail' post.id %}">{{post.title}}</a></h1>
+<p>{{post.published_date}}</p>
+<p><a href="{% url 'blog:detail' post.id %}">Comments:({{post.approve_comments.count}})</a></p><br>
+{% endfor %}
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

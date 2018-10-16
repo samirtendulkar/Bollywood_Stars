@@ -1,0 +1,11 @@
+{% extends 'blog/base.html' %}
+{% block body %}
+
+{% for post in post_drafts %}
+<h1><a href="{% url  'blog:detail' post.id %}">{{post.title}}</a></h1>
+{{post.created_date|date:"M d Y"}}
+
+{% endfor %}
+
+
+{% endblock %}

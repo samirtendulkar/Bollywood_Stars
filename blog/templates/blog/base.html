@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Fun Blog{% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Russo+One" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/styles.css' %}" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+    <nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{% url 'blog:index' %}">Fun Blog</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="{% url 'blog:index' %}">Home</a></li>
+      <li><a href="{% url 'blog:about' %}">About</a></li>
+      <li><a href="#">GitHub</a></li>
+      <li><a href="#">LinkedIn</a></li>
+    </ul>
+      <ul class="nav navbar-nav navbar-right">
+      <li><a href="{% url 'blog:post_drafts' %}">Drafts</a></li>
+      <li><a href="{% url 'blog:post_add' %}">Add Posts</a></li>
+          {% if user.is_authenticated %}
+      <li><a>Welcome {{user|title}}</a></li>
+      <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+      <li><a href="{% url 'login' %}">Login</a></li>
+      <li><a href="#">Register</a></li>
+          {% endif %}
+    </ul>
+  </div>
+</nav>
+
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+                {% block body %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
